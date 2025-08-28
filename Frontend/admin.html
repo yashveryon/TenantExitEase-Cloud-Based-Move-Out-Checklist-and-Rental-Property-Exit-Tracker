@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Admin Dashboard - TenantExitEase</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Internal Styles -->
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .bg-admin {
+      background-image: url('assets/admin.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-slide {
+      animation: fadeSlide 0.8s ease-out both;
+    }
+
+    table tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      transition: transform 0.2s ease;
+    }
+
+    h1, h2 {
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-admin text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Overlay -->
+  <div class="overlay absolute inset-0 z-0"></div>
+
+  <!-- Loader -->
+  <div id="loader" class="fixed top-0 left-0 right-0 bottom-0 bg-white bg-opacity-60 flex items-center justify-center z-50 hidden">
+    <div class="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 py-10 space-y-12 animate-fade-slide">
+
+    <!-- Header -->
+    <header class="flex justify-between items-center border-b border-indigo-200 pb-4">
+      <h1 class="text-4xl font-bold text-indigo-100">Admin Dashboard</h1>
+      <button id="logoutBtn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-sm font-semibold">
+        Logout
+      </button>
+    </header>
+
+    <!-- Exit Requests -->
+    <section class="bg-white bg-opacity-90 backdrop-blur p-6 rounded-2xl shadow-xl border border-gray-200">
+      <h2 class="text-2xl font-semibold mb-6 text-indigo-900">All Exit Requests</h2>
+      <div class="overflow-x-auto rounded-lg">
+        <table class="min-w-full table-auto text-sm text-left text-gray-800">
+          <thead class="bg-indigo-100 text-xs text-indigo-800 uppercase tracking-wider">
+            <tr>
+              <th class="px-4 py-3">Request ID</th>
+              <th class="px-4 py-3">Tenant</th>
+              <th class="px-4 py-3">Room</th>
+              <th class="px-4 py-3">Reason</th>
+              <th class="px-4 py-3">Checklist</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="exitBody" class="bg-white divide-y divide-gray-200">
+            <!-- Populated via admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Damage Reports -->
+    <section class="bg-white bg-opacity-90 backdrop-blur p-6 rounded-2xl shadow-xl border border-gray-200">
+      <h2 class="text-2xl font-semibold mb-6 text-indigo-900">All Damage Reports</h2>
+      <div class="overflow-x-auto rounded-lg">
+        <table class="min-w-full table-auto text-sm text-left text-gray-800">
+          <thead class="bg-indigo-100 text-xs text-indigo-800 uppercase tracking-wider">
+            <tr>
+              <th class="px-4 py-3">Report ID</th>
+              <th class="px-4 py-3">Tenant</th>
+              <th class="px-4 py-3">Room</th>
+              <th class="px-4 py-3">Description</th>
+              <th class="px-4 py-3">Cost</th>
+              <th class="px-4 py-3">Reported On</th>
+            </tr>
+          </thead>
+          <tbody id="damageBody" class="bg-white divide-y divide-gray-200">
+            <!-- Populated via admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Admin Script -->
+  <script src="js/admin.js"></script>
+</body>
+</html>

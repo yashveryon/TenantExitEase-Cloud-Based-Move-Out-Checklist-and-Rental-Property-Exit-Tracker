@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Tenant Dashboard - TenantExitEase</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6 text-gray-800 font-sans relative">
+
+  <!-- Loader -->
+  <div id="loader" class="hidden fixed inset-0 z-50 bg-white bg-opacity-60 flex items-center justify-center">
+    <div class="w-10 h-10 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <div class="max-w-3xl mx-auto space-y-10">
+
+    <!-- Header -->
+    <header class="border-b pb-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-indigo-700">Tenant Dashboard</h1>
+      <button id="logoutBtn" class="text-sm text-indigo-600 hover:underline">← Logout</button>
+    </header>
+
+    <!-- Exit Request Form -->
+    <section class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">Submit Exit Request</h2>
+      <form id="tenantExitForm" class="space-y-4" enctype="multipart/form-data">
+        <input id="tenantId" type="text" placeholder="Tenant ID" class="w-full p-2 border rounded" required />
+        <input id="name" type="text" placeholder="Full Name" class="w-full p-2 border rounded" required />
+        <input id="roomNumber" type="text" placeholder="Room Number" class="w-full p-2 border rounded" required />
+        <textarea id="reason" placeholder="Reason for Exit" class="w-full p-2 border rounded" required></textarea>
+        <input id="email" type="email" placeholder="Email Address" class="w-full p-2 border rounded" required />
+
+        <!-- Move-out Checklist -->
+        <div>
+          <label class="block font-medium text-gray-700 mb-2">Move-out Checklist (optional):</label>
+          <div class="space-y-2 ml-1 text-sm">
+            <label><input type="checkbox" name="moveout_checklist" value="Room Cleaned" class="mr-2">Room Cleaned</label><br>
+            <label><input type="checkbox" name="moveout_checklist" value="Bills Settled" class="mr-2">Bills Settled</label><br>
+            <label><input type="checkbox" name="moveout_checklist" value="Keys Returned" class="mr-2">Keys Returned</label><br>
+            <label><input type="checkbox" name="moveout_checklist" value="No Damages" class="mr-2">No Damages</label>
+          </div>
+        </div>
+
+        <!-- Supporting Document -->
+        <input id="supportingDoc" type="file" class="w-full" />
+
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 w-full">
+          Submit Exit Request
+        </button>
+        <p id="tenantExitStatus" class="text-sm mt-2 font-medium text-center text-gray-600"></p>
+      </form>
+    </section>
+
+    <!-- My Requests Section -->
+    <section class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">My Exit Requests</h2>
+      <div id="myExitRequests" class="space-y-4"></div>
+    </section>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/tenant.js"></script>
+</body>
+</html>

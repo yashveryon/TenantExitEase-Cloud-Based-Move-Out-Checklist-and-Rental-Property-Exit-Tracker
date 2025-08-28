@@ -1,0 +1,194 @@
+/* Global Font & Background Behavior */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  animation: fadeInBody 0.8s ease-in-out;
+}
+
+/* Page Fade-in Animation */
+@keyframes fadeInBody {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input Fields */
+textarea,
+input,
+select {
+  transition: all 0.2s ease-in-out;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1.5px #2563eb;
+}
+
+/* Buttons */
+button {
+  transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+  transform: scale(1.02);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Card-Like Containers */
+.card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+}
+
+/* Horizontal Scroll Table */
+.table-container {
+  overflow-x: auto;
+}
+
+/* Scrollbar Styling (Webkit) */
+.output-box::-webkit-scrollbar {
+  width: 6px;
+}
+.output-box::-webkit-scrollbar-thumb {
+  background-color: #9ca3af;
+  border-radius: 4px;
+}
+
+/* Status Badge Styling */
+.status-pill {
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.status-pending {
+  background-color: #facc15;
+  color: #000;
+}
+.status-approved {
+  background-color: #4ade80;
+  color: #fff;
+}
+.status-rejected {
+  background-color: #f87171;
+  color: #fff;
+}
+.status-review {
+  background-color: #60a5fa;
+  color: #fff;
+}
+
+/* Checklist Item */
+.checklist-item {
+  display: inline-block;
+  background-color: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  margin: 2px 4px;
+  white-space: nowrap;
+}
+
+/* Background Image for Login Page */
+.bg-login {
+  background-image: url('assets/login.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Background Image for Admin Page */
+.bg-admin {
+  background-image: url('assets/admin.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Background Image for Tenant Page */
+.bg-tenant {
+  background-image: url('assets/tenant.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Background Image for Landlord Page */
+.bg-landlord {
+  background-image: url('assets/landlord.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #f3f4f6; /* Light text for dark theme */
+}
+
+/* Landlord Page Dark Theme Enhancements */
+.bg-landlord h1,
+.bg-landlord h2,
+.bg-landlord th {
+  color: #f87171; /* Light red headers */
+}
+
+.bg-landlord .card,
+.bg-landlord section,
+.bg-landlord table {
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #991b1b;
+  color: #f3f4f6;
+}
+
+.bg-landlord .text-sm,
+.bg-landlord p,
+.bg-landlord td {
+  color: #e5e7eb;
+}
+
+.bg-landlord thead {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-landlord #approvedExitList > div {
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #111827;
+  border: 1px solid #991b1b;
+}
+
+/* Dark Overlay */
+.bg-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.bg-landlord #approvedExitList > div {
+  background-color: #f3f4f6 !important;  /* Light background for cards */
+  color: #111827 !important;             /* Force dark readable text */
+}
+
+.bg-landlord #approvedExitList p,
+.bg-landlord #approvedExitList span,
+.bg-landlord #approvedExitList strong {
+  color: #111827 !important;
+}

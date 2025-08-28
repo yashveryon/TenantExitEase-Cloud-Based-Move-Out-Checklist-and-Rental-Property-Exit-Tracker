@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#4f46e5" />
+  <title>TenantExitEase Portal</title>
+
+  <!-- TailwindCSS & SweetAlert2 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-tenant relative text-white font-sans">
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-overlay z-0"></div>
+
+  <!-- Loader -->
+  <div id="loader" class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-white bg-opacity-60 hidden z-50">
+    <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 max-w-4xl mx-auto p-6 space-y-12">
+
+    <!-- Header -->
+    <header class="text-center border-b border-white/20 pb-4">
+      <h1 class="text-4xl font-bold text-indigo-300 drop-shadow">Tenant Exit & Damage Portal</h1>
+      <p class="text-sm text-gray-200 mt-1">Submit exit requests, report damages, and download your submission reports</p>
+    </header>
+
+    <!-- Exit Request Form -->
+    <section class="bg-white/90 text-gray-800 p-6 rounded-2xl shadow-xl border border-gray-300 backdrop-blur-sm">
+      <h2 class="text-2xl font-semibold mb-4 text-indigo-800">Exit Request Form</h2>
+      <form id="exitForm" class="space-y-4" enctype="multipart/form-data">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="tenantId" class="block text-sm font-medium">Tenant ID</label>
+            <input id="tenantId" type="text" required class="input-field" />
+          </div>
+          <div>
+            <label for="name" class="block text-sm font-medium">Name</label>
+            <input id="name" type="text" required class="input-field" />
+          </div>
+          <div>
+            <label for="roomNumber" class="block text-sm font-medium">Room Number</label>
+            <input id="roomNumber" type="text" required class="input-field" />
+          </div>
+          <div>
+            <label for="exitDate" class="block text-sm font-medium">Exit Date</label>
+            <input id="exitDate" type="date" required class="input-field" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="reason" class="block text-sm font-medium">Reason for Exit</label>
+            <textarea id="reason" rows="3" required class="input-field"></textarea>
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium">Email</label>
+            <input id="email" type="email" required class="input-field" />
+          </div>
+          <div>
+            <label for="supportingDoc" class="block text-sm font-medium">Supporting Document (optional)</label>
+            <input id="supportingDoc" type="file" accept=".pdf,.doc,.jpg,.png" class="w-full mt-1" />
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="mt-4">
+          <label class="block text-sm font-medium mb-2">Move-out Checklist</label>
+          <div class="grid grid-cols-2 gap-2 text-sm text-gray-700">
+            <label><input type="checkbox" name="moveout_checklist" value="Room Cleaned" class="mr-2"> Room Cleaned</label>
+            <label><input type="checkbox" name="moveout_checklist" value="Keys Returned" class="mr-2"> Keys Returned</label>
+            <label><input type="checkbox" name="moveout_checklist" value="Bills Settled" class="mr-2"> Bills Settled</label>
+            <label><input type="checkbox" name="moveout_checklist" value="Furniture Intact" class="mr-2"> Furniture Intact</label>
+          </div>
+        </div>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl w-full">
+          Submit Exit Request
+        </button>
+        <p id="exitStatus" class="text-sm mt-2 text-center text-gray-600"></p>
+      </form>
+    </section>
+
+    <!-- Damage Report Form -->
+    <section class="bg-white/90 text-gray-800 p-6 rounded-2xl shadow-xl border border-gray-300 backdrop-blur-sm">
+      <h2 class="text-2xl font-semibold mb-4 text-red-700">Damage Report Form</h2>
+      <form id="damageForm" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="tenantId" class="block text-sm font-medium">Tenant ID</label>
+            <input id="tenantId" type="text" required class="input-field" />
+          </div>
+          <div>
+  <label class="block text-sm font-medium mb-1">Select Damaged Items</label>
+  <div class="grid grid-cols-2 gap-2 bg-white p-3 rounded text-black">
+    <label><input type="checkbox" name="item" value="fan" class="mr-2"> Fan - ₹50</label>
+    <label><input type="checkbox" name="item" value="table" class="mr-2"> Table - ₹100</label>
+    <label><input type="checkbox" name="item" value="chair" class="mr-2"> Chair - ₹200</label>
+    <label><input type="checkbox" name="item" value="bed" class="mr-2"> Bed - ₹500</label>
+    <label><input type="checkbox" name="item" value="bulb" class="mr-2"> Bulb - ₹30</label>
+  </div>
+</div>
+
+          <div class="sm:col-span-2">
+            <label for="description" class="block text-sm font-medium">Description of Damage</label>
+            <textarea id="description" rows="3" required class="input-field"></textarea>
+          </div>
+          <div>
+            <label for="estimatedAmount" class="block text-sm font-medium">Estimated Amount</label>
+            <input id="estimatedAmount" type="number" class="input-field bg-gray-200" readonly />
+          </div>
+        </div>
+
+        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl w-full">
+          Submit Damage Report
+        </button>
+        <p id="damageStatus" class="text-sm mt-2 text-center text-gray-600"></p>
+      </form>
+    </section>
+
+    <!-- View Requests -->
+    <section class="bg-white/90 text-gray-800 p-6 rounded-2xl shadow-xl border border-gray-300 backdrop-blur-sm">
+      <h2 class="text-2xl font-semibold mb-4 text-indigo-800">View Submitted Requests</h2>
+      <div class="flex flex-col sm:flex-row items-center gap-3 mb-4">
+        <input id="lookupTenantId" type="text" placeholder="Enter Tenant ID" class="input-field flex-1" />
+        <button onclick="fetchRequests()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md">
+          Load Requests
+        </button>
+        <button onclick="downloadReport()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">
+          Download CSV Report
+        </button>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-semibold mb-2">Exit Requests</h3>
+        <ul id="exitList" class="output-box space-y-2"></ul>
+      </div>
+
+      <div class="mt-6">
+        <h3 class="text-xl font-semibold mb-2">Damage Reports</h3>
+        <ul id="damageList" class="output-box space-y-2"></ul>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JS Logic -->
+  <script src="js/app.js"></script>
+  <script src="js/damage.js"></script>
+</body>
+</html>
